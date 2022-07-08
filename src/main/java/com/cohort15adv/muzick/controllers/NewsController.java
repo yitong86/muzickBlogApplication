@@ -32,15 +32,16 @@ public class NewsController {
 
     }
     @GetMapping("/")
-    public ResponseEntity<?> getMuzickArticles(){
-        String url = "https://newsapi.org/v2/everything&apiKey=" + apiKey + "&q=music";
+    public ResponseEntity<?> getMusicArticles(){
+        String url = "https://newsapi.org/v2/everything?apiKey=" + apiKey + "&q=music";
 
         NewsApi response = restTemplate.getForObject(url,NewsApi.class);
 
         List<Article> articleList = new ArrayList<>();
         for(Article article : response.getArticles()){
             if(article.getSourceName().equals("Wired")){
-                articleList.add(article);
+                article.setLikes("hi");
+              //  articleList.add(article);
             }
         }
 //        System.out.println(response.getStatus());

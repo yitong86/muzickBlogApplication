@@ -1,5 +1,7 @@
 package com.cohort15adv.muzick.payloads.ApiResponse;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Article {
 
     private class Source{
@@ -28,16 +30,19 @@ public class Article {
     private String title;
     private String description;
     private String url;
+    private String likes;
 
     public Article() {
     }
 
-    public Article(Source source, String author, String title, String description, String url) {
+    public Article(Source source, String author, String title, String description, String url,String likes) {
         this.source = source;
         this.author = author;
         this.title = title;
         this.description = description;
         this.url = url;
+        this.likes = likes;
+
     }
 
     public Source getSource() {
@@ -79,7 +84,17 @@ public class Article {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @JsonIgnore
     public String getSourceName(){
         return source.name;
+    }
+
+    public String getLikes() {
+        return likes;
+    }
+
+    public void setLikes(String likes) {
+        this.likes = likes;
     }
 }
